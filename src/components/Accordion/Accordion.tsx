@@ -1,12 +1,15 @@
 import React from 'react';
 
-export type AccordionCollapsedType = boolean
+// export type AccordionCollapsedType = boolean ==== my variant
 
 
 type AccordionPropsType = {
   titleValue: string
-  collapsed: AccordionCollapsedType
-  onClick: (collapsed: AccordionCollapsedType) => void
+  //&===== collapsed: AccordionCollapsedType
+  //&===== My Variant onClick: (collapsed: AccordionCollapsedType) => void
+
+  collapsed: boolean
+  onChange: () => void
 }
 
 export function Accordion(props: AccordionPropsType) {
@@ -14,7 +17,7 @@ export function Accordion(props: AccordionPropsType) {
 
   return (
     <div>
-      <AccordionTitle title={props.titleValue} onClick={props.onClick} collapsed={props.collapsed}/>
+      <AccordionTitle title={props.titleValue} onChange={props.onChange} /*collapsed={props.collapsed}*//>
       {!props.collapsed && <AccordionBody/>}
     </div>
   )
@@ -23,15 +26,14 @@ export function Accordion(props: AccordionPropsType) {
 
 type AccordionTitlePropsType = {
   title: string
-  collapsed: AccordionCollapsedType
-  onClick: (collapsed: AccordionCollapsedType) => void
+  // &===== collapsed: AccordionCollapsedType
+  onChange: () => void
 }
 
 
 function AccordionTitle(props: AccordionTitlePropsType) {
-  return <h3 onClick={() => {
-    props.onClick(!props.collapsed)
-  }}>{props.title}</h3>
+  return <h3 onClick={props.onChange/*&===== (!props.collapsed)*/
+  }>{props.title}</h3>
 
 }
 
