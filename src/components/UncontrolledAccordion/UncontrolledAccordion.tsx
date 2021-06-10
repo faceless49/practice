@@ -4,8 +4,8 @@ type AccordionPropsType = {
   titleValue: string,
   // collapsed: boolean
 }
-
 export function UncontrolledAccordion(props: AccordionPropsType) {
+  // ** lesson 7
   // let [collapsed, setCollapsed] = useState(false)
   //
   //
