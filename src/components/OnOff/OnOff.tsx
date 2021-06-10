@@ -1,8 +1,9 @@
-export type onType = true | false
 
 export type OnOffPropsType = {
-  on: onType
-  onClick: (on: onType) => void
+  on: boolean
+  //&===== onClick: (on: onType) => void
+
+  onChange: (on: boolean) => void
 }
 
 export function OnOff(props: OnOffPropsType) {
@@ -36,10 +37,17 @@ export function OnOff(props: OnOffPropsType) {
 
   }
 
+
+  const onClicked = () => props.onChange(true)
+  const offClicked = () => props.onChange(false)
   return (
     <div>
-      <div style={onStyle} onClick={() => props.onClick(!props.on)}>On</div>
-      <div style={offStyle} onClick={() => props.onClick(!props.on)}>Off</div>
+{/*      <div style={onStyle} onClick={() => props.onClick(!props.on)}>On</div>
+      <div style={offStyle} onClick={() => props.onClick(!props.on)}>Off</div>*/}
+
+      <div style={onStyle} onClick={onClicked}>On</div>
+      <div style={offStyle} onClick={offClicked}>Off</div>
+
       <div style={indicatorStyle}></div>
     </div>
   )
