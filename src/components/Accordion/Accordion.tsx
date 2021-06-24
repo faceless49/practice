@@ -32,7 +32,7 @@ type AccordionTitlePropsType = {
 
 
 function AccordionTitle(props: AccordionTitlePropsType) {
-  return <h3 onClick={props.onChange/*&===== (!props.collapsed)*/
+  return <h3 onClick={(e) => props.onChange()/*&===== (!props.collapsed)*/
   }>{props.title}</h3>
 
 }
