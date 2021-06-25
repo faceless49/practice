@@ -15,5 +15,3 @@ export const OffMode = () => <UncontrolledOnOff defaultOn={false} onChange={call
 export const BugMode = () => <div>unsync when change DefaultValue</div>
 
 
-
-export const DefaultInputValue = () => <input defaultValue={'Hello'}/>

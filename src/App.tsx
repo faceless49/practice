@@ -4,6 +4,14 @@ import {Accordion,} from './components/Accordion/Accordion';
 import {Rating, RatingValueType} from './components/Rating/Rating';
 import {OnOff} from './components/OnOff/OnOff';
 
+
+export type ItemType = {
+  title: string
+  value: number
+}
+
+
+
 function App() {
   // const [value, setValue] = useState<0 | 1 | 2 | 3 | 4 | 5>(0)
 
@@ -14,19 +22,17 @@ function App() {
 
   return (
     <div className="App">
-      {/* MY VARIANT <Accordion titleValue={'Controlled menu'}
-    collapsed={accordionCollapsed} o
-    nClick={setAccordionCollapsed}/>*/}
-
-      <Accordion titleValue={'Controlled menu'}
-                 collapsed={accordionCollapsed}
-                 onChange={() => setAccordionCollapsed(!accordionCollapsed)}/>
-
-
-      <Rating value={ratingValue} onClick={setRatingValue}/>
-
-      {/*<OnOff on={on} onClick={setOn}/>*/}
-      <OnOff on={on} onChange={(on) => setOn(on)}/>
+      {/*<Accordion*/}
+      {/*  items={items}*/}
+      {/*  titleValue={'Controlled menu'}*/}
+      {/*  collapsed={accordionCollapsed}*/}
+      {/*  onChange={() => setAccordionCollapsed(!accordionCollapsed)}/>*/}
+      <Rating
+        value={ratingValue}
+        onClick={setRatingValue}/>
+      <OnOff
+        on={on}
+        onChange={(on) => setOn(on)}/>
 
     </div>
   );
