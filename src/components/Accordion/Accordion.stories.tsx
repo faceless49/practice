@@ -5,7 +5,7 @@ import {Story} from '@storybook/react';
 
 
 export default {
-  title: 'Accordion stories',
+  title: 'components/Accordion stories',
   component: Accordion,
 };
 
@@ -34,11 +34,7 @@ UserUncollapsedMode.args = {
   ...callbacksProps,
   titleValue: 'Users',
   collapsed: false,
-  items: [{title: 'Dima', value: 1},
-    {title: 'Valera', value: 2},
-    {title: 'Artem', value: 3},
-    {title: 'Viktor', value: 4},
-  ],
+
 }
 
 

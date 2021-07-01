@@ -6,12 +6,16 @@ import {ItemType} from '../../App';
 
 export type AccordionPropsType = {
   titleValue: string
-  //&===== collapsed: AccordionCollapsedType
-  //&===== My Variant onClick: (collapsed: AccordionCollapsedType) => void
-
   collapsed: boolean
   onChange: () => void
+  /**
+   * Elements that are show when accordion is opened(not collapsed)
+   */
   items: ItemType[]
+  /**
+   * Callback that is called when any item will clicked
+   * @param value is value of clicked item
+   */
   onClick: (value: any) => void
 }
 
@@ -39,8 +43,13 @@ function AccordionTitle(props: AccordionTitlePropsType) {
   }>{props.title}</h3>
 
 }
+type AccordionBodyPropsType = {
+  items: ItemType[]
+  onClick: (value: any) => void
 
-function AccordionBody() {
+
+}
+function AccordionBody(props: AccordionBodyPropsType) {
   return <ul>
     <li>1</li>
     <li>2</li>
