@@ -5,10 +5,7 @@ import {Rating, RatingValueType} from './components/Rating/Rating';
 import {OnOff} from './components/OnOff/OnOff';
 
 
-export type ItemType = {
-  title: string
-  value: number
-}
+
 
 
 

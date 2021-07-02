@@ -1,8 +1,11 @@
 import React from 'react';
-import {ItemType} from '../../App';
 
 // export type AccordionCollapsedType = boolean ==== my variant
 
+export type ItemType = {
+  title: string
+  value: number
+}
 
 export type AccordionPropsType = {
   titleValue: string
@@ -52,6 +55,7 @@ function AccordionTitle(props: AccordionTitlePropsType) {
 
 }
 
+
 type AccordionBodyPropsType = {
   items: ItemType[]
   onClick: (value: any) => void
@@ -59,6 +63,7 @@ type AccordionBodyPropsType = {
 
 function AccordionBody(props: AccordionBodyPropsType) {
   return <ul>
-    {props.items.map( (i, index) => <li onClick={ () => {props.onClick(i.value)}}/>)}
+    {props.items.map( (i, index) =>
+      <li key={index} onClick={ () => {props.onClick(i.value)}}>{i.title}</li>)}
   </ul>
 }

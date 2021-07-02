@@ -3,6 +3,7 @@ import {Accordion, AccordionPropsType} from './Accordion';
 import {action} from '@storybook/addon-actions';
 import {Story} from '@storybook/react';
 
+
 const GetCategoryObj = (categoryName: 'Color' | 'Event' | 'Main') => ({
   table: {
     category: categoryName
@@ -80,6 +81,7 @@ export const ModeChanging: Story<AccordionPropsType> = (args) => {
     {...args}
     collapsed={value}
     onChange={() => setValue(!value)}
+
   />
 }
 ModeChanging.args = {
