@@ -17,6 +17,10 @@ export type AccordionPropsType = {
    * @param value is value of clicked item
    */
   onClick: (value: any) => void
+  /**
+   * Optional color of header text
+   */
+  color?: string
 }
 
 export function Accordion(props: AccordionPropsType) {
@@ -24,7 +28,10 @@ export function Accordion(props: AccordionPropsType) {
 
   return (
     <div>
-      <AccordionTitle title={props.titleValue} onChange={props.onChange} /*collapsed={props.collapsed}*//>
+      <AccordionTitle color={props.color}
+                      title={props.titleValue}
+                      onChange={props.onChange}
+        /*collapsed={props.collapsed}*//>
       {!props.collapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}
     </div>
   )
@@ -35,24 +42,23 @@ type AccordionTitlePropsType = {
   title: string
   // &===== collapsed: AccordionCollapsedType
   onChange: () => void
+  color?: string
 }
 
 
 function AccordionTitle(props: AccordionTitlePropsType) {
   return <h3 onClick={(e) => props.onChange()/*&===== (!props.collapsed)*/
-  }>{props.title}</h3>
+  } style={{color: props.color ? props.color : 'black'}}>{props.title}</h3>
 
 }
+
 type AccordionBodyPropsType = {
   items: ItemType[]
   onClick: (value: any) => void
-
-
 }
+
 function AccordionBody(props: AccordionBodyPropsType) {
   return <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
+    {props.items.map( (i, index) => <li onClick={ () => {props.onClick(i.value)}}/>)}
   </ul>
 }

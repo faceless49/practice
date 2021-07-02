@@ -3,10 +3,46 @@ import {Accordion, AccordionPropsType} from './Accordion';
 import {action} from '@storybook/addon-actions';
 import {Story} from '@storybook/react';
 
-
+const GetCategoryObj = (categoryName: 'Color' | 'Event' | 'Main') => ({
+  table: {
+    category: categoryName
+  }
+})
+//
+// const EventsCategory = {
+//   table: {
+//     category: 'Events'
+//   }
+// }
+//
+// const ColorsCategory = {
+//   table: {
+//     category: 'Colors'
+//   }
+// }
+// const OtherCategory = {
+//   table: {
+//     category: 'Other'
+//   },
+// }
 export default {
   title: 'components/Accordion stories',
   component: Accordion,
+  argTypes: {
+    color: {
+      control: 'color',
+      ...GetCategoryObj('Color')
+    },
+    onChange: {
+      ...GetCategoryObj('Event')
+    },
+    onClick: {
+      ...GetCategoryObj('Event')
+    },
+    items: {...GetCategoryObj('Main')},
+    collapsed: {...GetCategoryObj('Main')},
+    titleValue: {...GetCategoryObj('Main')},
+  }
 };
 
 
@@ -38,20 +74,24 @@ UserUncollapsedMode.args = {
 }
 
 
-export const ModeChanging = () => {
+export const ModeChanging: Story<AccordionPropsType> = (args) => {
   const [value, setValue] = useState<boolean>(true)
   return <Accordion
-    titleValue={'Users'}
-    onChange={() => setValue(!value)}
+    {...args}
     collapsed={value}
-    items={[
-      {title: 'Dima', value: 1},
-      {title: 'Valera', value: 2},
-      {title: 'Artem', value: 3},
-      {title: 'Viktor', value: 4},
-    ]}
-    onClick={(value) => {
-      alert(`users with ID ${value} should be happy`)
-    }}
+    onChange={() => setValue(!value)}
   />
 }
+ModeChanging.args = {
+  titleValue: 'Users',
+  items: [
+    {title: 'Dima', value: 1},
+    {title: 'Valera', value: 2},
+    {title: 'Artem', value: 3},
+    {title: 'Viktor', value: 4},
+  ],
+  onClick: (value) => {
+    alert(`users with ID ${value} should be happy`)
+  }
+}
+
