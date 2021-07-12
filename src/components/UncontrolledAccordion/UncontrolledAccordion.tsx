@@ -1,28 +1,16 @@
 import React, { useReducer, useState } from "react";
+import {
+  UncontrolledAccordionReducer,
+  TOGGLE_CONSTANT
+} from "./UncontrolledAccordionReducer";
 
 type AccordionPropsType = {
   titleValue: string;
   // collapsed: boolean
 };
 // ** Lesson 15 Reducers
-type ActionType = {
-  type: string;
-};
 
-const reducer = (state: boolean, action: ActionType) => {
-  console.log("Reducer start");
-  console.log(state);
-  console.log(action);
-  console.log("Reducer END");
-
-  if (action.type === "TOGGLE-COLLAPSED") {
-    return !state;
-  }
-
-  return state;
-};
-
-export function UncontrolledAccordion(props: AccordionPropsType) {
+export const UncontrolledAccordion = (props: AccordionPropsType) => {
   console.log("UncontrolledAccordion render");
 
   // ** lesson 7
@@ -41,7 +29,9 @@ export function UncontrolledAccordion(props: AccordionPropsType) {
   // )
 
   //* lesson 15 use Reducer  let [collapsed, setCollapsed] = useState(false);
-  let [collapsed, dispatch] = useReducer(reducer, false);
+  let [state, dispatch] = useReducer(UncontrolledAccordionReducer, {
+    collapsed: false
+  });
 
   return (
     <div>
@@ -53,15 +43,15 @@ export function UncontrolledAccordion(props: AccordionPropsType) {
       <AccordionTitle
         title={props.titleValue}
         onClick={() => {
-          dispatch({ type: "TOGGLE-COLLAPSED" });
+          dispatch({ type: TOGGLE_CONSTANT });
         }}
       />{" "}
       {/* Здесь мы передаем
          тайтлу колбек, чтобы можно было вызывать из компоненты тайтл*/}
-      {!collapsed && <AccordionBody />}
+      {!state.collapsed && <AccordionBody />}
     </div>
   );
-}
+};
 
 type AccordionTitlePropsType = {
   title: string;
