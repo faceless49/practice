@@ -1,10 +1,18 @@
-import React, {useState} from 'react';
+import React, { useReducer, useState } from "react";
+import {
+  UncontrolledAccordionReducer,
+  TOGGLE_CONSTANT
+} from "./UncontrolledAccordionReducer";
 
 type AccordionPropsType = {
-  titleValue: string,
+  titleValue: string;
   // collapsed: boolean
-}
-export function UncontrolledAccordion(props: AccordionPropsType) {
+};
+// ** Lesson 15 Reducers
+
+export const UncontrolledAccordion = (props: AccordionPropsType) => {
+  console.log("UncontrolledAccordion render");
+
   // ** lesson 7
   // let [collapsed, setCollapsed] = useState(false)
   //
@@ -20,36 +28,56 @@ export function UncontrolledAccordion(props: AccordionPropsType) {
   //   </div>
   // )
 
-  let [collapsed, setCollapsed] = useState(false)
-
+  //* lesson 15 use Reducer  let [collapsed, setCollapsed] = useState(false);
+  let [state, dispatch] = useReducer(UncontrolledAccordionReducer, {
+    collapsed: false
+  });
 
   return (
     <div>
+      {/* <AccordionTitle
+        title={props.titleValue}
+        onClick={() => {
+          setCollapsed(!collapsed);
+        }} */}
       <AccordionTitle
-        title={props.titleValue} onClick={ () => {setCollapsed(!collapsed)}}/> {/* Здесь мы передаем
+        title={props.titleValue}
+        onClick={() => {
+          dispatch({ type: TOGGLE_CONSTANT });
+        }}
+      />{" "}
+      {/* Здесь мы передаем
          тайтлу колбек, чтобы можно было вызывать из компоненты тайтл*/}
-
-      {!collapsed && <AccordionBody/>}
+      {!state.collapsed && <AccordionBody />}
     </div>
-  )
-}
+  );
+};
 
 type AccordionTitlePropsType = {
-  title: string
-  onClick: () => void // * Типизируем здесь колбек
-}
+  title: string;
+  onClick: () => void; // * Типизируем здесь колбек
+};
 
 function AccordionTitle(props: AccordionTitlePropsType) {
-
-  return <h3 onClick={ () => {props.onClick() } }>{props.title}</h3>
+  return (
+    <h3
+      onClick={() => {
+        props.onClick();
+      }}
+    >
+      {props.title}
+    </h3>
+  );
 }
 
 function AccordionBody() {
-  return <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-  </ul>
+  return (
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  );
 }
 
 // ? Алгоритм
