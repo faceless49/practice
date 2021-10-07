@@ -50,7 +50,7 @@ export const SetTimeoutExample = () => {
 
   useEffect(() => {
     // setTimeout(() => {
-      console.log('Tick')
+    console.log('Tick`')
     //   document.title = counter.toString()
     // }, 1000)
     const intervalID = setInterval(() => {
@@ -64,6 +64,64 @@ export const SetTimeoutExample = () => {
       Hello, counter: {counter}, fake: {fake}
       {/*<button onClick={() => setCounter(counter + 1)}>+</button>*/}
       {/*<button onClick={() => setFake(fake + 1)}>+</button>*/}
+    </div>
+  );
+};
+
+
+export const ResetEffectExample = () => {
+  const [counter, setCounter] = useState(1)
+
+  console.log('ResetEffectExample render ' + counter)
+
+
+  useEffect(() => {
+    console.log('Effect occurred: ' + counter)
+
+    return () => {
+      console.log('RESET EFFECT ' + counter)
+    }
+
+  }, [counter])
+
+  const increase = () => {
+    setCounter(counter + 1)
+  }
+
+  return (
+    <div>
+      Hello, counter: {counter}
+      <button onClick={increase}>++
+      </button>
+    </div>
+  );
+};
+
+
+export const KeysTrackerExample = () => {
+  const [text, setText] = useState('')
+
+  console.log('ResetEffectExample render ' + text)
+
+
+  useEffect(() => {
+    console.log('Effect occurred: ' + text)
+    const handler = (e: KeyboardEvent) => {
+      console.log(e.key);
+      // setText((state) => state + e.key)
+      setText(text + e.key)
+    }
+    window.addEventListener('keypress', handler)
+    return () => {
+      window.removeEventListener('keypress', handler)
+    }
+
+  }, [text])
+
+
+  return (
+    <div>
+      Typed text: {text}
     </div>
   );
 };
